@@ -22,12 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
 app.use('/users', users);
-app.get('/',task.list);
-app.post('/createTask',task.create);
-app.post('/updateTask',task.update);
-app.post('/removeTask',task.remove);
+app.use('/createTask',task.create);
+app.use('/updateTask',task.update);
+app.use('/removeTask',task.remove);
+app.use('/', task.list);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
